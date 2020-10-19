@@ -6084,8 +6084,14 @@
   title: networkspeedtest
   description:
   fields:
-    - name: counter
+    - name: download
       type: long
       required: true
       description: >
         PLEASE UPDATE DOCUMENTATION
+    - name: upload
+      type: long
+      required: true
+      description: >
+        PLEASE UPDATE DOCUMENTATION
+

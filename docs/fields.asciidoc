@@ -8678,7 +8678,19 @@ type: keyword
 None
 
 
-*`counter`*::
+*`download`*::
++
+--
+PLEASE UPDATE DOCUMENTATION
+
+
+type: long
+
+required: True
+
+--
+
+*`upload`*::
 +
 --
 PLEASE UPDATE DOCUMENTATION
