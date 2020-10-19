@@ -58,28 +58,28 @@ var (
 	timeout    = 10
 )
 
-func (bt *networkspeedtest) speedtest() {
-	kingpin.Version("1.0.3")
-	kingpin.Parse()
+// func (bt *networkspeedtest) speedtest() (download float64) {
+// 	kingpin.Version("1.0.3")
+// 	kingpin.Parse()
 
-	setTimeout()
+// 	setTimeout()
 
-	user := fetchUserInfo()
-	user.Show()
+// 	user := fetchUserInfo()
+// 	user.Show()
 
-	list := fetchServerList(user)
-	if *showList {
-		list.Show()
-		return
-	}
+// 	list := fetchServerList(user)
+// 	if *showList {
+// 		list.Show()
+// 		return
+// 	}
 
-	targets := list.FindServer(*serverIds)
-	targets.StartTest()
-	// targets.ShowResult()
-	fmt.Printf("MOd Download: %5.2f Mbit/s\n", 	targets.ShowResult())
+// 	targets := list.FindServer(*serverIds)
+// 	targets.StartTest()
+// 	// targets.ShowResult()
+// 	fmt.Printf("MOd Download: %5.2f Mbit/s\n", 	targets.ShowResult())
 
-
-}
+// 	return
+// }
 
 
 // Run starts networkspeedtest.
@@ -96,7 +96,23 @@ func (bt *networkspeedtest) Run(b *beat.Beat) error {
 	counter := 1
 	for {
 		now := time.Now()
-		bt.speedtest()
+		kingpin.Version("1.0.3")
+		kingpin.Parse()
+	
+		setTimeout()
+	
+		user := fetchUserInfo()
+		user.Show()
+	
+		list := fetchServerList(user)
+		if *showList {
+			list.Show()
+			// return
+		}
+	
+		targets := list.FindServer(*serverIds)
+		targets.StartTest()
+		download, upload := targets.ShowResult()
 		bt.lastIndexTime = now
 		logp.Info("Event sent")
 		select {
@@ -108,8 +124,8 @@ func (bt *networkspeedtest) Run(b *beat.Beat) error {
 		event := beat.Event{
 			Timestamp: time.Now(),
 			Fields: common.MapStr{
-				"type":    b.Info.Name,
-				"counter": counter,
+				"download": download,
+				"upload": upload,
 			},
 		}
 		bt.client.Publish(event)

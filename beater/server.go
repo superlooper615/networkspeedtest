@@ -161,13 +161,14 @@ func (svrs Servers) StartTest() {
 }
 
 // ShowResult : show testing result
-func (svrs Servers) ShowResult() (download float64) {
+func (svrs Servers) ShowResult() (download, upload float64) {
 	fmt.Printf(" \n")
 
 	download = svrs[0].DLSpeed
+	upload = svrs[0].ULSpeed
 
 	if len(svrs) == 1 {
-		// fmt.Printf("Download: %5.2f Mbit/s\n", svrs[0].DLSpeed)
+		fmt.Printf("Download: %5.2f Mbit/s\n", svrs[0].DLSpeed)
 		fmt.Printf("Upload: %5.2f Mbit/s\n", svrs[0].ULSpeed)
 		
 	} else {
