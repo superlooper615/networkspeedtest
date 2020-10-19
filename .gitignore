@@ -1,0 +1,7 @@
+/.idea
+/build
+
+.DS_Store
+/networkspeedtest
+/networkspeedtest.test
+*.pyc
