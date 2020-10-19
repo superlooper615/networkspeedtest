@@ -47,6 +47,7 @@ require (
 	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
 	golang.org/x/text v0.3.3 // indirect
 	golang.org/x/tools v0.0.0-20200918232735-d647fc253266
+	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	honnef.co/go/tools v0.0.1-2020.1.5 // indirect
 	howett.net/plist v0.0.0-20200419221736-3b63eb3a43b5 // indirect
 )
